@@ -93,7 +93,7 @@ launch:
 
   - arg:
       name: motion_path_planner_type
-      default: path_optimizer
+      default: none
       # option: path_optimizer
       #         path_sampler
       #         none
