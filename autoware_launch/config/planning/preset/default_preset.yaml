@@ -87,13 +87,13 @@ launch:
   # motion planning modules
   - arg:
       name: motion_path_smoother_type
-      default: elastic_band
+      default: none
       # option: elastic_band
       #         none
 
   - arg:
       name: motion_path_planner_type
-      default: path_optimizer
+      default: none
       # option: path_optimizer
       #         path_sampler
       #         none
