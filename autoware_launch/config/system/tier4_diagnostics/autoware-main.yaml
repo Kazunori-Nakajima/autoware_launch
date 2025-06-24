@@ -27,7 +27,7 @@ units:
       - { type: link, link: /localization/autonomous_available }
       - { type: link, link: /planning/autonomous_available }
       - { type: link, link: /perception/autonomous_available }
-      - { type: link, link: /control/autonomous_available }
+      # - { type: link, link: /control/autonomous_available }
       - { type: link, link: /vehicle/autonomous_available }
       - { type: link, link: /system/autonomous_available }
 
