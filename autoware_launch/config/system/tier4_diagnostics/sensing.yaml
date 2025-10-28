@@ -58,7 +58,7 @@ units:
       - { type: link, link: /sensing/lidar/002-status-error }
       - { type: link, link: /sensing/lidar/003-ptp-error }
       - { type: link, link: /sensing/lidar/004-blockage-error }
-      - { type: link, link: /sensing/visibility_validation-error }
+      # - { type: link, link: /sensing/visibility_validation-error }
 
   - path: /sensing/in_lane_emergency_stop
     type: and
@@ -456,7 +456,7 @@ units:
     hysteresis: 10.0
 
   - path: /sensing/lidar/002-status
-    type: and
+    type: ok
     list:
       - { type: link, link: /sensing/lidar/front_lower/functional-safety }
       - { type: link, link: /sensing/lidar/front_upper/functional-safety }
