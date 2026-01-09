@@ -976,7 +976,7 @@ units:
       - { type: link, link: /sensing/camera/3/image }
       - { type: link, link: /sensing/camera/5/image }
   - path: /sensing/camera/3/image
-    type: diag
+    type: ok
     node: image_diagnostics3
     name: camera3
     timeout: 3.0
