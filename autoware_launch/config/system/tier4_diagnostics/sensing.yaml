@@ -1174,7 +1174,7 @@ units:
       # - { type: link, link: /sensing/radar/rear_left/object_rate }
       # - { type: link, link: /sensing/radar/rear_right/object_rate }
   - path: /sensing/radar/front_center/object_rate
-    type: ok
+    type: diag
     node: /sensing/radar/front_center/nebula_continental_ars548
     name: Objects rate bound status
     timeout: 3.0
@@ -1192,7 +1192,7 @@ units:
     timeout: 3.0
     hysteresis: 0.125
   - path: /sensing/radar/rear_center/object_rate
-    type: ok
+    type: diag
     node: /sensing/radar/rear_center/nebula_continental_ars548
     name: Objects rate bound status
     timeout: 3.0
@@ -1220,7 +1220,7 @@ units:
       # - { type: link, link: /sensing/radar/rear_left/detections_rate }
       # - { type: link, link: /sensing/radar/rear_right/detections_rate }
   - path: /sensing/radar/front_center/detections_rate
-    type: ok
+    type: diag
     node: /sensing/radar/front_center/nebula_continental_ars548
     name: Detections rate bound status
     timeout: 3.0
@@ -1238,7 +1238,7 @@ units:
     timeout: 3.0
     hysteresis: 0.125
   - path: /sensing/radar/rear_center/detections_rate
-    type: ok
+    type: diag
     node: /sensing/radar/rear_center/nebula_continental_ars548
     name: Detections rate bound status
     timeout: 3.0
