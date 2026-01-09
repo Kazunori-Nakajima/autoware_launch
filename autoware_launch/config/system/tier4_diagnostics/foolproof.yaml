@@ -180,12 +180,11 @@ units:
     name: main_autoware_system_node_alive
     timeout: 3.0
 
-  # - path: /foolproof/sub/autoware_node_alive
-  #   type: diag
-  #   node: autoware_diagnostics_bridge_node_sub
-  #   name: sub_autoware_node_alive
-  #   timeout: 3.0
-
+  - path: /foolproof/sub/autoware_node_alive
+    type: diag
+    node: autoware_diagnostics_bridge_node_sub
+    name: sub_autoware_node_alive
+    timeout: 3.0
   - path: /foolproof/perception1/recognition_node_alive
     type: diag
     node: autoware_diagnostics_bridge_node_perception1

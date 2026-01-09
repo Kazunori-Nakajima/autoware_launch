@@ -27,6 +27,5 @@
 
     <!-- mission planner -->
     <arg name="mission_planner_param_path" value="$(find-pkg-share autoware_launch)/config/planning/mission_planning/mission_planner/mission_planner.param.yaml"/>
-
   </include>
 </launch>
