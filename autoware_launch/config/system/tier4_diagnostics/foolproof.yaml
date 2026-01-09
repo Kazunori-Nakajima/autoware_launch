@@ -197,7 +197,6 @@ units:
   #   name: sub_autoware_node_alive
   #   timeout: 3.0
   #   latch: 0.0
-
   - path: /foolproof/perception1/recognition_node_alive
     type: diag
     node: autoware_diagnostics_bridge_node_perception1
