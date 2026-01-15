@@ -2856,6 +2856,36 @@ Visualization Manager:
           Displays:
             - Class: rviz_default_plugins/MarkerArray
               Enabled: true
+              Name: DiffusionPlannerRouteMarker
+              Namespaces:
+                {}
+              Topic:
+                Depth: 5
+                Durability Policy: Volatile
+                History Policy: Keep Last
+                Reliability Policy: Reliable
+                Value: /planning/trajectory_generator/neural_network_based_planner/diffusion_planner_node/debug/route_marker
+              Value: true
+            - Class: tier4_planning_factor_rviz_plugin/PlanningFactorRvizPlugin
+              Enabled: true
+              Name: PlanningFactor(NeuralNetworkPlanner)
+              Namespaces:
+                {}
+              Show Safety Factors: false
+              Topic:
+                Depth: 5
+                Durability Policy: Volatile
+                History Policy: Keep Last
+                Reliability Policy: Reliable
+                Value: /planning/planning_factors/neural_network_planner
+              Value: true
+              show_safety_factors: false
+          Enabled: true
+          Name: NeuralNetworkBasedPlanner
+        - Class: rviz_common/Group
+          Displays:
+            - Class: rviz_default_plugins/MarkerArray
+              Enabled: true
               Name: PlanningErrorMarker
               Namespaces:
                 {}
