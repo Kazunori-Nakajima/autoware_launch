@@ -5,9 +5,8 @@
   <arg name="mission_planner_param_path"/>
   <arg name="launch_remaining_distance_time_calculator" default="false"/>
 
-
   <node pkg="demo_nodes_cpp" exec="parameter_blackboard" name="velocity_smoother" namespace="/planning/scenario_planning" output="screen">
-    <param name="max_velocity" value="16.6" />
+    <param name="max_velocity" value="16.6"/>
   </node>
 
   <group>
@@ -45,7 +44,10 @@
             <arg name="jerk_filtered_smoother_param_path" value="$(find-pkg-share autoware_launch)/config/planning/scenario_planning/common/autoware_velocity_smoother/JerkFiltered.param.yaml"/>
             <arg name="velocity_smoother_param_path" value="$(find-pkg-share autoware_launch)/config/planning/scenario_planning/common/autoware_velocity_smoother/velocity_smoother.param.yaml"/>
             <arg name="common_smoother_param_path" value="$(find-pkg-share autoware_launch)/config/planning/scenario_planning/common/common.param.yaml"/>
-            <arg name="elastic_band_param_path" value="$(find-pkg-share autoware_launch)/config/planning/scenario_planning/lane_driving/motion_planning/path_smoother/elastic_band_smoother.param.yaml"/>
+            <arg
+              name="elastic_band_param_path"
+              value="$(find-pkg-share autoware_launch)/config/planning/scenario_planning/lane_driving/motion_planning/path_smoother/elastic_band_smoother.param.yaml"
+            />
           </include>
         </group>
       </group>
