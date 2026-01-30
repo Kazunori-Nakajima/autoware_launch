@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <launch>
   <arg name="is_redundant" default="false"/>
+  <arg name="singleton_mode" default="false" if="$(var is_redundant)"/>
+  <arg name="singleton_mode" default="true" unless="$(var is_redundant)"/>
   <arg name="use_control_command_gate" default="false"/>
+  <arg name="planning_setting" default="diffusion_planner" description="planning setting diffusion_planner / rule-based"/>
 
   <let
     name="diagnostic_graph_aggregator_param_path"
@@ -13,8 +16,19 @@
     value="$(find-pkg-share autoware_launch)/config/system/diagnostic_graph_aggregator/diagnostic_graph_aggregator.param.yaml"
     unless="$(var is_redundant)"
   />
+
+  <!-- Diagnostic graph path selection -->
   <let name="diagnostic_graph_aggregator_graph_path" value="$(find-pkg-share autoware_launch)/config/system/tier4_diagnostics/autoware-main.redundancy.main.yaml" if="$(var is_redundant)"/>
-  <let name="diagnostic_graph_aggregator_graph_path" value="$(find-pkg-share autoware_launch)/config/system/tier4_diagnostics/autoware-main.yaml" unless="$(var is_redundant)"/>
+  <let
+    name="diagnostic_graph_aggregator_graph_path"
+    value="$(find-pkg-share autoware_launch)/config/system/tier4_diagnostics/autoware-main-e2e.yaml"
+    if="$(eval &quot;'$(var singleton_mode)' and '$(var planning_setting)'=='diffusion_planner'&quot;)"
+  />
+  <let
+    name="diagnostic_graph_aggregator_graph_path"
+    value="$(find-pkg-share autoware_launch)/config/system/tier4_diagnostics/autoware-main.yaml"
+    if="$(eval &quot;'$(var singleton_mode)' and '$(var planning_setting)'!='diffusion_planner'&quot;)"
+  />
 
   <let name="dummy_diag_publisher_param_path" value="$(find-pkg-share autoware_launch)/config/system/tier4_diagnostics/dummy_diag_publisher.redundancy.main.param.yaml" if="$(var is_redundant)"/>
   <let name="dummy_diag_publisher_param_path" value="$(find-pkg-share autoware_launch)/config/system/tier4_diagnostics/dummy_diag_publisher.param.yaml" unless="$(var is_redundant)"/>
