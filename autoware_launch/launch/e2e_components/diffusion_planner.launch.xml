@@ -5,6 +5,28 @@
   <arg name="mission_planner_param_path"/>
   <arg name="launch_remaining_distance_time_calculator" default="false"/>
 
+  <!-- trajectory generator param paths -->
+  <arg name="diffusion_planner_param_path"/>
+  <arg name="trajectory_modifier_param_path"/>
+  <arg name="trajectory_optimizer_param_path"/>
+  <arg name="jerk_filtered_smoother_param_path"/>
+  <arg name="velocity_smoother_param_path"/>
+  <arg name="common_smoother_param_path"/>
+  <arg name="elastic_band_param_path"/>
+  <arg name="trajectory_point_fixer_param_path"/>
+  <arg name="trajectory_extender_param_path"/>
+  <arg name="trajectory_spline_smoother_param_path"/>
+  <arg name="trajectory_qp_smoother_param_path"/>
+  <arg name="trajectory_velocity_optimizer_param_path"/>
+  <arg name="trajectory_kinematic_feasibility_enforcer_param_path"/>
+  <arg name="trajectory_mpt_optimizer_param_path"/>
+
+  <!-- trajectory selector param paths -->
+  <arg name="trajectory_concatenator_param_path"/>
+  <arg name="trajectory_safety_filter_param_path"/>
+  <arg name="filter_param_path"/>
+  <arg name="trajectory_ranker_param_path"/>
+
   <node pkg="demo_nodes_cpp" exec="parameter_blackboard" name="velocity_smoother" namespace="/planning/scenario_planning" output="screen">
     <param name="max_velocity" value="16.6"/>
   </node>
@@ -27,7 +49,7 @@
         <group>
           <push-ros-namespace namespace="neural_network_based_planner"/>
           <include file="$(find-pkg-share autoware_diffusion_planner)/launch/diffusion_planner.launch.xml">
-            <arg name="diffusion_planner_param_path" value="$(find-pkg-share autoware_launch)/config/planning/neural_net_planner/diffusion_planner.param.yaml"/>
+            <arg name="diffusion_planner_param_path" value="$(var diffusion_planner_param_path)"/>
             <arg name="input_odometry" value="/localization/kinematic_state"/>
             <arg name="input_acceleration" value="/localization/acceleration"/>
             <arg name="input_route" value="/planning/mission_planning/route"/>
@@ -39,43 +61,28 @@
             <arg name="output_turn_indicators" value="/planning/turn_indicators_cmd"/>
           </include>
           <include file="$(find-pkg-share autoware_trajectory_modifier)/launch/trajectory_modifier.launch.xml">
-            <arg name="trajectory_modifier_param_path" value="$(find-pkg-share autoware_launch)/config/planning/neural_net_planner/trajectory_modifier.param.yaml"/>
+            <arg name="trajectory_modifier_param_path" value="$(var trajectory_modifier_param_path)"/>
             <arg name="input_candidate_trajectories" value="/planning/generator/diffusion_planner/candidate_trajectories"/>
             <arg name="output_candidate_trajectories" value="/planning/generator/diffusion_planner/modified_candidate_trajectories"/>
             <arg name="input_odometry" value="/localization/kinematic_state"/>
             <arg name="input_acceleration" value="/localization/acceleration"/>
           </include>
           <include file="$(find-pkg-share autoware_trajectory_optimizer)/launch/trajectory_optimizer.launch.xml">
-            <arg name="trajectory_optimizer_param_path" value="$(find-pkg-share autoware_launch)/config/planning/neural_net_planner/trajectory_optimizer.param.yaml"/>
+            <arg name="trajectory_optimizer_param_path" value="$(var trajectory_optimizer_param_path)"/>
             <arg name="input_trajectories" value="/planning/generator/diffusion_planner/modified_candidate_trajectories"/>
             <arg name="output_traj" value="/planning/generator/trajectory_optimizer/debug/trajectory"/>
             <arg name="output_trajectories" value="/planning/generator/candidate_trajectories"/>
-            <arg name="jerk_filtered_smoother_param_path" value="$(find-pkg-share autoware_launch)/config/planning/scenario_planning/common/autoware_velocity_smoother/JerkFiltered.param.yaml"/>
-            <arg name="velocity_smoother_param_path" value="$(find-pkg-share autoware_launch)/config/planning/scenario_planning/common/autoware_velocity_smoother/velocity_smoother.param.yaml"/>
-            <arg name="common_smoother_param_path" value="$(find-pkg-share autoware_launch)/config/planning/scenario_planning/common/common.param.yaml"/>
-            <arg
-              name="elastic_band_param_path"
-              value="$(find-pkg-share autoware_launch)/config/planning/scenario_planning/lane_driving/motion_planning/path_smoother/elastic_band_smoother.param.yaml"
-            />
-            <arg name="trajectory_point_fixer_param_path" value="$(find-pkg-share autoware_launch)/config/planning/neural_net_planner/trajectory_optimizer_plugins/trajectory_point_fixer.param.yaml"/>
-            <arg name="trajectory_extender_param_path" value="$(find-pkg-share autoware_launch)/config/planning/neural_net_planner/trajectory_optimizer_plugins/trajectory_extender.param.yaml"/>
-            <arg
-              name="trajectory_spline_smoother_param_path"
-              value="$(find-pkg-share autoware_launch)/config/planning/neural_net_planner/trajectory_optimizer_plugins/trajectory_spline_smoother.param.yaml"
-            />
-            <arg name="trajectory_qp_smoother_param_path" value="$(find-pkg-share autoware_launch)/config/planning/neural_net_planner/trajectory_optimizer_plugins/trajectory_qp_smoother.param.yaml"/>
-            <arg
-              name="trajectory_velocity_optimizer_param_path"
-              value="$(find-pkg-share autoware_launch)/config/planning/neural_net_planner/trajectory_optimizer_plugins/trajectory_velocity_optimizer.param.yaml"
-            />
-            <arg
-              name="trajectory_kinematic_feasibility_enforcer_param_path"
-              value="$(find-pkg-share autoware_launch)/config/planning/neural_net_planner/trajectory_optimizer_plugins/trajectory_kinematic_feasibility_enforcer.param.yaml"
-            />
-            <arg
-              name="trajectory_mpt_optimizer_param_path"
-              value="$(find-pkg-share autoware_launch)/config/planning/neural_net_planner/trajectory_optimizer_plugins/trajectory_mpt_optimizer.param.yaml"
-            />
+            <arg name="jerk_filtered_smoother_param_path" value="$(var jerk_filtered_smoother_param_path)"/>
+            <arg name="velocity_smoother_param_path" value="$(var velocity_smoother_param_path)"/>
+            <arg name="common_smoother_param_path" value="$(var common_smoother_param_path)"/>
+            <arg name="elastic_band_param_path" value="$(var elastic_band_param_path)"/>
+            <arg name="trajectory_point_fixer_param_path" value="$(var trajectory_point_fixer_param_path)"/>
+            <arg name="trajectory_extender_param_path" value="$(var trajectory_extender_param_path)"/>
+            <arg name="trajectory_spline_smoother_param_path" value="$(var trajectory_spline_smoother_param_path)"/>
+            <arg name="trajectory_qp_smoother_param_path" value="$(var trajectory_qp_smoother_param_path)"/>
+            <arg name="trajectory_velocity_optimizer_param_path" value="$(var trajectory_velocity_optimizer_param_path)"/>
+            <arg name="trajectory_kinematic_feasibility_enforcer_param_path" value="$(var trajectory_kinematic_feasibility_enforcer_param_path)"/>
+            <arg name="trajectory_mpt_optimizer_param_path" value="$(var trajectory_mpt_optimizer_param_path)"/>
           </include>
         </group>
       </group>
@@ -84,12 +91,12 @@
       <group>
         <push-ros-namespace namespace="trajectory_selector"/>
         <include file="$(find-pkg-share autoware_trajectory_concatenator)/launch/trajectory_concatenator.launch.xml">
-          <arg name="trajectory_concatenator_param_path" value="$(find-pkg-share autoware_launch)/config/planning/neural_net_planner/concatenator.param.yaml"/>
+          <arg name="trajectory_concatenator_param_path" value="$(var trajectory_concatenator_param_path)"/>
           <arg name="concatenator_input_trajectories" value="/planning/generator/candidate_trajectories"/>
           <arg name="concatenator_output_trajectories" value="/planning/generator/concatenated/candidate_trajectories"/>
         </include>
         <include file="$(find-pkg-share autoware_trajectory_safety_filter)/launch/trajectory_safety_filter.launch.xml">
-          <arg name="trajectory_safety_filter_param_path" value="$(find-pkg-share autoware_launch)/config/planning/neural_net_planner/trajectory_safety_filter.param.yaml"/>
+          <arg name="trajectory_safety_filter_param_path" value="$(var trajectory_safety_filter_param_path)"/>
           <arg name="input_trajectories" value="/planning/generator/concatenated/candidate_trajectories"/>
           <arg name="output_trajectories" value="/planning/trajectory_selector/safety_filter/candidate_trajectories"/>
           <arg name="input_vector_map" value="/map/vector_map"/>
@@ -97,14 +104,14 @@
           <arg name="input_objects" value="/perception/object_recognition/objects"/>
         </include>
         <include file="$(find-pkg-share autoware_trajectory_traffic_rule_filter)/launch/trajectory_traffic_rule_filter.launch.xml">
-          <arg name="filter_param_path" value="$(find-pkg-share autoware_launch)/config/planning/neural_net_planner/trajectory_traffic_rule_filter.param.yaml"/>
+          <arg name="filter_param_path" value="$(var filter_param_path)"/>
           <arg name="input_trajectories" value="/planning/trajectory_selector/safety_filter/candidate_trajectories"/>
           <arg name="output_trajectories" value="/planning/trajectory_selector/traffic_rule_filter/candidate_trajectories"/>
           <arg name="input_map" value="/map/vector_map"/>
           <arg name="input_traffic_signals" value="/perception/traffic_light_recognition/traffic_signals"/>
         </include>
         <include file="$(find-pkg-share autoware_trajectory_ranker)/launch/trajectory_ranker.launch.xml">
-          <arg name="trajectory_ranker_param_path" value="$(find-pkg-share autoware_launch)/config/planning/neural_net_planner/evaluation.param.yaml"/>
+          <arg name="trajectory_ranker_param_path" value="$(var trajectory_ranker_param_path)"/>
           <arg name="input_trajectories" value="/planning/trajectory_selector/traffic_rule_filter/candidate_trajectories"/>
           <arg name="output_trajectories" value="/planning/trajectory_selector/ranker/scored_trajectories"/>
           <arg name="input_route" value="/planning/mission_planning/route"/>
