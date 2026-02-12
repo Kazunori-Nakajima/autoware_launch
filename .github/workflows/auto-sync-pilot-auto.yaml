@@ -60,3 +60,4 @@ jobs:
           base: feat/v4.3/e2e
           commit-message: "chore: update autoware/launcher version"
           delete-branch: true
+          reviewers: ${{ github.actor }}
