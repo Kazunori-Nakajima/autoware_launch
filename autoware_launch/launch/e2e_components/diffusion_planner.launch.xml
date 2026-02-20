@@ -57,6 +57,7 @@
             <arg name="input_tracked_objects" value="/perception/object_recognition/tracking/objects"/>
             <arg name="input_vector_map" value="/map/vector_map"/>
             <arg name="input_turn_indicators" value="/vehicle/status/turn_indicators_status"/>
+            <arg name="debug/output_traffic_signal" value="/planning/scenario_planning/lane_driving/behavior_planning/debug/traffic_signal"/>
             <arg name="output_trajectories" value="/planning/generator/diffusion_planner/candidate_trajectories"/>
             <arg name="output_turn_indicators" value="/planning/turn_indicators_cmd"/>
           </include>
