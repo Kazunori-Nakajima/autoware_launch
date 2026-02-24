@@ -3584,18 +3584,14 @@ Visualization Manager:
               Display Yaw Covariance: false
               Display Yaw Rate: false
               Display Yaw Rate Covariance: false
-              Enabled: true
+              Enabled: false
               Line Width: 0.10000000149011612
               MOTORCYCLE:
                 Alpha: 0.9990000128746033
                 Color: 255; 138; 128
               Name: Centerpoint(red1)
               Namespaces:
-                label: true
-                position covariance: true
-                shape: true
-                twist: true
-                velocity: true
+                {}
               Object Fill Type: skeleton
               PEDESTRIAN:
                 Alpha: 0.9990000128746033
@@ -3616,7 +3612,7 @@ Visualization Manager:
               UNKNOWN:
                 Alpha: 0.9990000128746033
                 Color: 255; 138; 128
-              Value: true
+              Value: false
               Visualization Type: Normal
             - BUS:
                 Alpha: 0.9990000128746033
@@ -3642,7 +3638,7 @@ Visualization Manager:
               Display Yaw Covariance: false
               Display Yaw Rate: false
               Display Yaw Rate Covariance: false
-              Enabled: true
+              Enabled: false
               Line Width: 0.10000000149011612
               MOTORCYCLE:
                 Alpha: 0.9990000128746033
@@ -3670,7 +3666,7 @@ Visualization Manager:
               UNKNOWN:
                 Alpha: 0.9990000128746033
                 Color: 255; 82; 82
-              Value: true
+              Value: false
               Visualization Type: Normal
             - BUS:
                 Alpha: 0.9990000128746033
@@ -3703,11 +3699,7 @@ Visualization Manager:
                 Color: 213; 0; 0
               Name: CenterpointValidator(red3)
               Namespaces:
-                label: true
-                position covariance: true
-                shape: true
-                twist: true
-                velocity: true
+                {}
               Object Fill Type: skeleton
               PEDESTRIAN:
                 Alpha: 0.9990000128746033
@@ -3754,7 +3746,7 @@ Visualization Manager:
               Display Yaw Covariance: false
               Display Yaw Rate: false
               Display Yaw Rate Covariance: false
-              Enabled: true
+              Enabled: false
               Line Width: 0.10000000149011612
               MOTORCYCLE:
                 Alpha: 0.9990000128746033
@@ -3782,7 +3774,7 @@ Visualization Manager:
               UNKNOWN:
                 Alpha: 0.9990000128746033
                 Color: 178; 255; 89
-              Value: true
+              Value: false
               Visualization Type: Normal
             - BUS:
                 Alpha: 0.9990000128746033
@@ -3808,7 +3800,7 @@ Visualization Manager:
               Display Yaw Covariance: false
               Display Yaw Rate: false
               Display Yaw Rate Covariance: false
-              Enabled: true
+              Enabled: false
               Line Width: 0.10000000149011612
               MOTORCYCLE:
                 Alpha: 0.9990000128746033
@@ -3836,7 +3828,7 @@ Visualization Manager:
               UNKNOWN:
                 Alpha: 0.9990000128746033
                 Color: 118; 255; 3
-              Value: true
+              Value: false
               Visualization Type: Normal
             - BUS:
                 Alpha: 0.9990000128746033
@@ -3862,7 +3854,7 @@ Visualization Manager:
               Display Yaw Covariance: false
               Display Yaw Rate: false
               Display Yaw Rate Covariance: false
-              Enabled: true
+              Enabled: false
               Line Width: 0.10000000149011612
               MOTORCYCLE:
                 Alpha: 0.9990000128746033
@@ -3890,7 +3882,7 @@ Visualization Manager:
               UNKNOWN:
                 Alpha: 0.9990000128746033
                 Color: 100; 221; 23
-              Value: true
+              Value: false
               Visualization Type: Normal
             - BUS:
                 Alpha: 0.9990000128746033
@@ -3916,18 +3908,14 @@ Visualization Manager:
               Display Yaw Covariance: false
               Display Yaw Rate: false
               Display Yaw Rate Covariance: false
-              Enabled: true
+              Enabled: false
               Line Width: 0.10000000149011612
               MOTORCYCLE:
                 Alpha: 0.9990000128746033
                 Color: 255; 145; 0
               Name: DetectionByTracker(orange)
               Namespaces:
-                label: true
-                position covariance: true
-                shape: true
-                twist: true
-                velocity: true
+                {}
               Object Fill Type: skeleton
               PEDESTRIAN:
                 Alpha: 0.9990000128746033
@@ -3948,7 +3936,7 @@ Visualization Manager:
               UNKNOWN:
                 Alpha: 0.9990000128746033
                 Color: 255; 145; 0
-              Value: true
+              Value: false
               Visualization Type: Normal
             - BUS:
                 Alpha: 0.30000001192092896
@@ -3974,14 +3962,16 @@ Visualization Manager:
               Display Yaw Covariance: false
               Display Yaw Rate: false
               Display Yaw Rate Covariance: false
-              Enabled: false
+              Enabled: true
               Line Width: 0.10000000149011612
               MOTORCYCLE:
                 Alpha: 0.30000001192092896
                 Color: 213; 0; 249
               Name: CameraLidarFusion(purple)
               Namespaces:
-                {}
+                position covariance: true
+                shape: true
+                twist: true
               Object Fill Type: skeleton
               PEDESTRIAN:
                 Alpha: 0.30000001192092896
@@ -4002,7 +3992,7 @@ Visualization Manager:
               UNKNOWN:
                 Alpha: 0.30000001192092896
                 Color: 213; 0; 249
-              Value: false
+              Value: true
               Visualization Type: Normal
             - BUS:
                 Alpha: 0.9990000128746033
@@ -4056,7 +4046,65 @@ Visualization Manager:
               UNKNOWN:
                 Alpha: 0.9990000128746033
                 Color: 255; 255; 255
-              Value: false
+              Value: true
+              Visualization Type: Normal
+            - BUS:
+                Alpha: 0.9990000128746033
+                Color: 250; 190; 190
+              CAR:
+                Alpha: 0.9990000128746033
+                Color: 250; 190; 190
+              CYCLIST:
+                Alpha: 0.9990000128746033
+                Color: 250; 190; 190
+              Class: autoware_perception_rviz_plugin/DetectedObjects
+              Confidence Interval: 95%
+              Display Acceleration: true
+              Display Existence Probability: false
+              Display Label: true
+              Display Pose Covariance: true
+              Display Predicted Path Confidence: true
+              Display Predicted Paths: true
+              Display Twist: true
+              Display Twist Covariance: false
+              Display UUID: true
+              Display Velocity: true
+              Display Yaw Covariance: false
+              Display Yaw Rate: false
+              Display Yaw Rate Covariance: false
+              Enabled: true
+              Line Width: 0.10000000149011612
+              MOTORCYCLE:
+                Alpha: 0.9990000128746033
+                Color: 250; 190; 190
+              Name: Streampetr(pink)
+              Namespaces:
+                label: true
+                position covariance: true
+                shape: true
+                twist: true
+                velocity: true
+              Object Fill Type: skeleton
+              PEDESTRIAN:
+                Alpha: 0.9990000128746033
+                Color: 250; 190; 190
+              Polygon Type: 3d
+              TRAILER:
+                Alpha: 0.9990000128746033
+                Color: 250; 190; 190
+              TRUCK:
+                Alpha: 0.9990000128746033
+                Color: 250; 190; 190
+              Topic:
+                Depth: 5
+                Durability Policy: Volatile
+                History Policy: Keep Last
+                Reliability Policy: Best Effort
+                Value: /perception/object_recognition/detection/streampetr/objects
+              UNKNOWN:
+                Alpha: 0.9990000128746033
+                Color: 250; 190; 190
+              Value: true
               Visualization Type: Normal
             - BUS:
                 Alpha: 0.9990000128746033
@@ -4089,11 +4137,7 @@ Visualization Manager:
                 Color: 255; 234; 0
               Name: Detection(yellow)
               Namespaces:
-                label: true
-                position covariance: true
-                shape: true
-                twist: true
-                velocity: true
+                {}
               Object Fill Type: skeleton
               PEDESTRIAN:
                 Alpha: 0.9990000128746033
@@ -4201,22 +4245,14 @@ Visualization Manager:
               Display Yaw Covariance: false
               Display Yaw Rate: false
               Display Yaw Rate Covariance: false
-              Enabled: true
+              Enabled: false
               Line Width: 0.10000000149011612
               MOTORCYCLE:
                 Alpha: 0.9990000128746033
                 Color: 0; 176; 255
               Name: Prediction(light_blue)
               Namespaces:
-                acceleration: true
-                label: true
-                path: true
-                path confidence: true
-                position covariance: true
-                shape: true
-                twist: true
-                uuid: true
-                velocity: true
+                {}
               Object Fill Type: skeleton
               PEDESTRIAN:
                 Alpha: 0.9990000128746033
@@ -4237,7 +4273,7 @@ Visualization Manager:
               UNKNOWN:
                 Alpha: 0.9990000128746033
                 Color: 0; 176; 255
-              Value: true
+              Value: false
               Visualization Type: Normal
           Enabled: true
           Name: Perception
