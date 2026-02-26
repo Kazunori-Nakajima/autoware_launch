@@ -37,6 +37,8 @@
   <arg name="trajectory_safety_filter_param_path"/>
   <arg name="filter_param_path"/>
   <arg name="trajectory_ranker_param_path"/>
+  <arg name="trajectory_adapter_param_path"/>
+
   <arg name="disable_diffusion_planner" default="false"/>
   <arg name="enable_minimum_rule_based_planner" default="false"/>
   <arg name="enable_dummy_concatenator" default="false"/>
@@ -161,6 +163,7 @@
           <arg name="input_objects" value="/perception/object_recognition/objects"/>
         </include>
         <include file="$(find-pkg-share autoware_trajectory_adapter)/launch/trajectory_adapter.launch.xml">
+          <arg name="trajectory_adapter_param_path" value="$(var trajectory_adapter_param_path)"/>
           <arg name="input_trajectories" value="/planning/trajectory_selector/ranker/scored_trajectories"/>
           <arg name="output_trajectory" value="/planning/trajectory"/>
         </include>

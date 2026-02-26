@@ -2942,6 +2942,20 @@ Visualization Manager:
                 Color: 255; 255; 255
               Value: true
               Visualization Type: Normal
+            - Class: tier4_planning_factor_rviz_plugin/PlanningFactorRvizPlugin
+              Enabled: true
+              Name: PlanningFactor(Adapter)
+              Namespaces:
+                {}
+              Show Safety Factors: true
+              Topic:
+                Depth: 5
+                Durability Policy: Volatile
+                History Policy: Keep Last
+                Reliability Policy: Reliable
+                Value: /planning/planning_factors/trajectory_adapter
+              Value: true
+              show_safety_factors: true
           Enabled: true
           Name: NeuralNetworkBasedPlanner
         - Class: rviz_common/Group
