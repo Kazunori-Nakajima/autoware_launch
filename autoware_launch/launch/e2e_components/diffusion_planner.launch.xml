@@ -166,6 +166,14 @@
       </group>
     </group>
 
+    <!-- planning evaluator -->
+    <group>
+      <include file="$(find-pkg-share autoware_planning_evaluator)/launch/planning_evaluator.launch.xml">
+        <arg name="input/objects" value="/planning/trajectory_generator/neural_network_based_planner/diffusion_planner_node/output/predicted_objects"/>
+        <arg name="input/reference_trajectory" value="/planning/trajectory_generator/neural_network_based_planner/diffusion_planner_node/output/trajectory"/>
+      </include>
+    </group>
+
     <!-- mission remaining distance and time calculator -->
     <group if="$(var launch_remaining_distance_time_calculator)">
       <include file="$(find-pkg-share autoware_remaining_distance_time_calculator)/launch/remaining_distance_time_calculator.launch.xml"/>
