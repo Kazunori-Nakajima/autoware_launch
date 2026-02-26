@@ -38,7 +38,7 @@
   <arg name="filter_param_path"/>
   <arg name="trajectory_ranker_param_path"/>
   <arg name="trajectory_adapter_param_path"/>
-  
+
   <arg name="disable_diffusion_planner" default="false"/>
   <arg name="enable_minimum_rule_based_planner" default="false"/>
   <arg name="enable_dummy_concatenator" default="false"/>
