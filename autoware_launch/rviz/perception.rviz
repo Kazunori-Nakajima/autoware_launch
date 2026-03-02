@@ -127,6 +127,7 @@ Visualization Manager:
                 Expand Link Details: false
                 Expand Tree: false
                 Link Tree Style: Links in Alphabetic Order
+
                 ars408_front_link:
                   Alpha: 1
                   Show Axes: false
@@ -355,13 +356,20 @@ Visualization Manager:
               Value: true
               Wave Color: 255; 255; 255
               Wave Velocity: 40
-            - Class: autoware_overlay_rviz_plugin/SignalDisplay
+            - Background Alpha: 0.30000001192092896
+              Background Color: 0; 0; 0
+              Class: autoware_overlay_rviz_plugin/SignalDisplay
+              Dark Traffic Color: 255; 51; 51
               Enabled: true
               Gear Topic Test: /vehicle/status/gear_status
+              Handle Angle Scale: 17
               Hazard Lights Topic: /vehicle/status/hazard_lights_status
               Height: 100
               Left: -660
+              Light Traffic Color: 255; 153; 153
               Name: SignalDisplay
+              Primary Color: 174; 174; 174
+              Signal Blinking Mode: Static
               Signal Color: 0; 230; 120
               Speed Limit Topic: /planning/scenario_planning/current_max_velocity
               Speed Topic: /vehicle/status/velocity_status
@@ -374,7 +382,7 @@ Visualization Manager:
           Enabled: true
           Name: Vehicle
         - Class: autoware_string_stamped_rviz_plugin/StringStampedOverlayDisplay
-          Enabled: true
+          Enabled: false
           Font Size: 11
           Left: 10
           Max Letter Num: 70
@@ -389,7 +397,7 @@ Visualization Manager:
             History Policy: Keep Last
             Reliability Policy: Reliable
             Value: /logging_diag_graph/debug/error_graph_text
-          Value: true
+          Value: false
           Value height offset: 0
       Enabled: true
       Name: System
@@ -407,7 +415,7 @@ Visualization Manager:
           Color: 255; 255; 255
           Color Transformer: FlatColor
           Decay Time: 0
-          Enabled: true
+          Enabled: false
           Invert Rainbow: false
           Max Color: 255; 255; 255
           Max Intensity: 237
@@ -428,11 +436,12 @@ Visualization Manager:
             Value: /map/pointcloud_map
           Use Fixed Frame: true
           Use rainbow: false
-          Value: true
+          Value: false
         - Class: rviz_default_plugins/MarkerArray
           Enabled: true
           Name: Lanelet2VectorMap
           Namespaces:
+
             "": true
             center_lane_line: true
             center_line_arrows: true
@@ -1137,6 +1146,9 @@ Visualization Manager:
               View Text Slope:
                 Scale: 0.30000001192092896
                 Value: false
+              View Text Time:
+                Scale: 0.30000001192092896
+                Value: false
               View Text Velocity:
                 Scale: 0.30000001192092896
                 Value: false
@@ -1177,9 +1189,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.4000000059604645
-                        Color: 0; 0; 0
-                        Constant Color: false
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1227,9 +1241,11 @@ Visualization Manager:
                         Vehicle Width: 1.8300000429153442
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 210; 110; 10
-                        Constant Color: true
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1277,9 +1293,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 210; 110; 210
-                        Constant Color: true
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1327,9 +1345,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 210; 210; 110
-                        Constant Color: true
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1377,9 +1397,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 210; 210; 110
-                        Constant Color: true
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1427,9 +1449,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 110; 110; 210
-                        Constant Color: true
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1477,9 +1501,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 210; 110; 110
-                        Constant Color: true
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1527,9 +1553,11 @@ Visualization Manager:
                         Vehicle Width: 1.8300000429153442
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 115; 210; 22
-                        Constant Color: false
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1577,9 +1605,11 @@ Visualization Manager:
                         Vehicle Width: 1.8300000429153442
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 115; 210; 22
-                        Constant Color: false
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1627,9 +1657,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 115; 210; 22
-                        Constant Color: false
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1677,9 +1709,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 115; 210; 22
-                        Constant Color: false
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1727,9 +1761,11 @@ Visualization Manager:
                         Vehicle Width: 1.8300000429153442
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 115; 210; 22
-                        Constant Color: false
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1777,9 +1813,11 @@ Visualization Manager:
                         Vehicle Width: 1.8300000429153442
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 115; 210; 22
-                        Constant Color: false
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1827,9 +1865,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 115; 210; 22
-                        Constant Color: false
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1877,9 +1917,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 115; 210; 22
-                        Constant Color: false
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -1927,9 +1969,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.30000001192092896
-                        Color: 115; 210; 22
-                        Constant Color: false
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -2600,9 +2644,11 @@ Visualization Manager:
                         Vehicle Width: 1.6950000524520874
                       View Path:
                         Alpha: 0.9990000128746033
-                        Color: 0; 0; 0
-                        Constant Color: false
                         Constant Width: false
+                        Fade Out Distance: 0
+                        Max Velocity Color: 0; 230; 120
+                        Mid Velocity Color: 32; 138; 174
+                        Min Velocity Color: 63; 46; 227
                         Value: true
                         Width: 2
                       View Point:
@@ -2612,6 +2658,9 @@ Visualization Manager:
                         Radius: 0.10000000149011612
                         Value: false
                       View Text Slope:
+                        Scale: 0.30000001192092896
+                        Value: false
+                      View Text Time:
                         Scale: 0.30000001192092896
                         Value: false
                       View Text Velocity:
@@ -3017,9 +3066,11 @@ Visualization Manager:
             Vehicle Width: 1.6950000524520874
           View Path:
             Alpha: 1
-            Color: 255; 255; 255
-            Constant Color: true
             Constant Width: true
+            Fade Out Distance: 0
+            Max Velocity Color: 0; 230; 120
+            Mid Velocity Color: 32; 138; 174
+            Min Velocity Color: 63; 46; 227
             Value: true
             Width: 0.05000000074505806
           View Point:
@@ -3029,6 +3080,9 @@ Visualization Manager:
             Radius: 0.10000000149011612
             Value: false
           View Text Slope:
+            Scale: 0.30000001192092896
+            Value: false
+          View Text Time:
             Scale: 0.30000001192092896
             Value: false
           View Text Velocity:
@@ -3123,42 +3177,15 @@ Visualization Manager:
                 Debug:
                   Control: true
                   Localization:
-                    EKFPoseHistory: true
-                    NDT pointclouds: true
-                    NDTLoadedPCDMap: true
-                    NDTPoseHistory: true
+                    "": true
                     Value: true
                   Map: true
                   Perception:
-                    CameraLidarFusion(purple): true
-                    Centerpoint(red1): true
-                    CenterpointROIFusion(red2): true
-                    CenterpointValidator(red3): true
-                    Detection(yellow): true
-                    DetectionByTracker(orange): true
-                    PointPainting(light_green1): true
-                    PointPaintingROIFusion(light_green2): true
-                    PointPaintingValidator(light_green3): true
-                    Prediction(light_blue): true
-                    RadarFarObjects(white): true
-                    Tracking(green): true
+                    "": true
                     Value: true
                   Planning:
-                    Objects Of Interest:
-                      AvoidanceByLCLeft: true
-                      AvoidanceByLCRight: true
-                      AvoidanceLeft: true
-                      AvoidanceRight: true
-                      BlindSpot: true
-                      Crosswalk: true
-                      DetectionArea: true
-                      GoalPlanner: true
-                      Intersection: true
-                      LaneChangeLeft: true
-                      LaneChangeRight: true
-                      NoStoppingArea: true
-                      StartPlanner: true
-                      TrafficLight: true
+                    "":
+                      "": true
                       Value: true
                     Value: true
                   Sensing:
@@ -3184,7 +3211,6 @@ Visualization Manager:
                   Lanelet2VectorMap: true
                   PointCloudMap: true
                   Value: false
-                MrmSummaryOverlayDisplay: true
                 Perception:
                   ObjectRecognition:
                     Detection:
@@ -3237,7 +3263,6 @@ Visualization Manager:
                           NoStoppingArea: true
                           OcclusionSpot: true
                           RightLaneChange: true
-                          RunOut: true
                           SideShift: true
                           SpeedBump: true
                           StartPlanner: true
@@ -3289,7 +3314,6 @@ Visualization Manager:
                           VirtualWall (NoDrivableLane): true
                           VirtualWall (NoStoppingArea): true
                           VirtualWall (OcclusionSpot): true
-                          VirtualWall (RunOut): true
                           VirtualWall (SpeedBump): true
                           VirtualWall (StartPlanner): true
                           VirtualWall (StaticObstacleAvoidance): true
@@ -3306,9 +3330,7 @@ Visualization Manager:
                             Value: true
                           ObstacleAvoidance: true
                           ObstacleCruise:
-                            CruiseVirtualWall: true
                             DebugMarker: true
-                            SlowDownVirtualWall: true
                             Value: true
                           ObstacleStop: true
                           SurroundObstacleChecker:
@@ -3325,7 +3347,9 @@ Visualization Manager:
                           VirtualWall (DynamicObstacleStop): true
                           VirtualWall (MotionVelocitySmoother): true
                           VirtualWall (ObstacleAvoidance): true
-                          VirtualWall (ObstacleCruise): true
+                          VirtualWall (ObstacleCruise Cruise): true
+                          VirtualWall (ObstacleCruise SlowDown): true
+                          VirtualWall (ObstacleCruise Stop): true
                           VirtualWall (ObstacleStop): true
                           VirtualWall (ObstacleVelocityLimiter): true
                           VirtualWall (OutOfLane): true
@@ -3351,8 +3375,8 @@ Visualization Manager:
                   Value: true
                 StringStampedOverlayDisplay: true
                 System:
+                  Error Diag Graph: true
                   Grid: true
-                  MRM Summary: true
                   TF: true
                   Value: false
                   Vehicle:
@@ -4483,15 +4507,17 @@ Visualization Manager:
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Best Effort
-        Value: /sensing/camera/image
+        Value: /sensing/camera/camera5/image_raw/compressed
       Value: true
     - Class: autoware_string_stamped_rviz_plugin/StringStampedOverlayDisplay
-      Enabled: true
+      Enabled: false
       Font Size: 15
       Left: 24
       Max Letter Num: 42
       Name: StringStampedOverlayDisplay
       Text Color: 51; 201; 220
+      Time To Erase Last Diag: 2
+      Time To Keep Last Diag: 1
       Top: 960
       Topic:
         Depth: 5
@@ -4499,7 +4525,7 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Best Effort
         Value: /planning/scenario_planning/lane_driving/behavior_planning/behavior_path_planner/debug/internal_state
-      Value: true
+      Value: false
       Value height offset: 0
   Enabled: true
   Global Options:
