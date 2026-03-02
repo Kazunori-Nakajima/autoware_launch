@@ -21,7 +21,6 @@
   <arg name="launch_planning" default="true" description="launch planning"/>
   <arg name="launch_control" default="true" description="launch control"/>
   <arg name="launch_api" default="true" description="launch api"/>
-  <arg name="launch_v2x" default="true" description="launch V2X"/>
   <arg name="launch_l4_toolkit" default="true" description="launch L4 Toolkit"/>
   <!-- Global parameters -->
   <arg name="use_sim_time" default="false" description="use_sim_time"/>
@@ -163,6 +162,7 @@
       <arg name="pub_topic_name" value="/in_lane_stop/diagnostics"/>
     </include>
 
+    <!-- cspell: ignore overrider -->
     <!-- mrm diagnostic_overrider -->
     <include file="$(find-pkg-share mrm_diagnostic_overrider)/launch/mrm_diagnostic_overrider.launch.xml">
       <arg name="input_diagnostics" value="/in_lane_stop/diagnostics"/>
