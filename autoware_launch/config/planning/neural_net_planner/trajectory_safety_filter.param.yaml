@@ -1,7 +1,12 @@
 /**:
   ros__parameters:
     # NOTE: Workaround for rclcpp crash when parsing empty lists (https://github.com/ros2/rclcpp/issues/1955)
-    filter_names: ["autoware::trajectory_safety_filter::plugin::UncrossableBoundaryDepartureFilter", "autoware::trajectory_safety_filter::plugin::CollisionCheckFilter"]
+    filter_names:
+      [
+        "autoware::trajectory_safety_filter::plugin::UncrossableBoundaryDepartureFilter",
+        "autoware::trajectory_safety_filter::plugin::CollisionCheckFilter",
+        "autoware::trajectory_safety_filter::plugin::VehicleConstraintFilter",
+      ]
     # available filters:
     #  "autoware::trajectory_safety_filter::plugin::OutOfLaneFilter"
     #  "autoware::trajectory_safety_filter::plugin::CollisionFilter"
