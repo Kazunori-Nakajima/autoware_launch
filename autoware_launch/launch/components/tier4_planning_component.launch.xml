@@ -56,7 +56,7 @@
 
       <!-- trajectory selector params -->
       <arg name="trajectory_concatenator_param_path" value="$(var neural_net_planner_config_path)/concatenator.param.yaml"/>
-      <arg name="trajectory_safety_filter_param_path" value="$(var neural_net_planner_config_path)/trajectory_safety_filter.param.yaml"/>
+      <arg name="trajectory_validator_param_path" value="$(var neural_net_planner_config_path)/trajectory_validator.param.yaml"/>
       <arg name="filter_param_path" value="$(var neural_net_planner_config_path)/trajectory_traffic_rule_filter.param.yaml"/>
       <arg name="trajectory_ranker_param_path" value="$(var neural_net_planner_config_path)/simple_trajectory_ranker.param.yaml"/>
       <arg name="trajectory_adapter_param_path" value="$(var neural_net_planner_config_path)/trajectory_adapter.param.yaml"/>
