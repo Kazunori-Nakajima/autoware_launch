@@ -83,6 +83,8 @@
             <arg name="output_candidate_trajectories" value="/planning/generator/diffusion_planner/modified_candidate_trajectories"/>
             <arg name="input_odometry" value="/localization/kinematic_state"/>
             <arg name="input_acceleration" value="/localization/acceleration"/>
+            <arg name="input_objects_topic_name" value="/perception/object_recognition/objects"/>
+            <arg name="input_pointcloud_topic_name" value="/perception/obstacle_segmentation/pointcloud"/>
           </include>
           <include file="$(find-pkg-share autoware_trajectory_optimizer)/launch/trajectory_optimizer.launch.xml">
             <arg name="trajectory_optimizer_param_path" value="$(var trajectory_optimizer_param_path)"/>
