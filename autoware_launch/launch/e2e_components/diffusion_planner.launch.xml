@@ -35,7 +35,6 @@
   <!-- trajectory selector param paths -->
   <arg name="trajectory_concatenator_param_path"/>
   <arg name="trajectory_validator_param_path"/>
-  <arg name="filter_param_path"/>
   <arg name="trajectory_ranker_param_path"/>
   <arg name="trajectory_adapter_param_path"/>
 
