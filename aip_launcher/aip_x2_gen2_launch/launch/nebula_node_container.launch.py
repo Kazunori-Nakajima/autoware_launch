@@ -556,10 +556,14 @@ def launch_setup(context, *args, **kwargs):
             executable=LaunchConfiguration("container_executable"),
             composable_node_descriptions=lidar_specific_container_nodes,
             output="both",
-            additional_env={
-                "LD_PRELOAD": LaunchConfiguration("ld_preload_value"),
-                "AGNOCAST_MEMPOOL_SIZE": "1073741824",
-            },
+            additional_env=(
+                {
+                    "LD_PRELOAD": LaunchConfiguration("ld_preload_value"),
+                    "AGNOCAST_MEMPOOL_SIZE": "1073741824",
+                }
+                if use_agnocast
+                else {}
+            ),
         )
         launch_targets.append(lidar_specific_container)
 
