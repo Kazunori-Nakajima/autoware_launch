@@ -34,8 +34,7 @@
 
   <!-- trajectory selector param paths -->
   <arg name="trajectory_concatenator_param_path"/>
-  <arg name="trajectory_safety_filter_param_path"/>
-  <arg name="filter_param_path"/>
+  <arg name="trajectory_validator_param_path"/>
   <arg name="trajectory_ranker_param_path"/>
   <arg name="trajectory_adapter_param_path"/>
 
@@ -83,6 +82,8 @@
             <arg name="output_candidate_trajectories" value="/planning/generator/diffusion_planner/modified_candidate_trajectories"/>
             <arg name="input_odometry" value="/localization/kinematic_state"/>
             <arg name="input_acceleration" value="/localization/acceleration"/>
+            <arg name="input_objects_topic_name" value="/perception/object_recognition/objects"/>
+            <arg name="input_pointcloud_topic_name" value="/perception/obstacle_segmentation/pointcloud"/>
           </include>
           <include file="$(find-pkg-share autoware_trajectory_optimizer)/launch/trajectory_optimizer.launch.xml">
             <arg name="trajectory_optimizer_param_path" value="$(var trajectory_optimizer_param_path)"/>
@@ -137,25 +138,19 @@
             <arg name="concatenator_output_trajectories" value="/planning/generator/concatenated/candidate_trajectories"/>
           </include>
         </group>
-        <include file="$(find-pkg-share autoware_trajectory_safety_filter)/launch/trajectory_safety_filter.launch.xml">
-          <arg name="trajectory_safety_filter_param_path" value="$(var trajectory_safety_filter_param_path)"/>
+        <include file="$(find-pkg-share autoware_trajectory_validator)/launch/trajectory_validator.launch.xml">
+          <arg name="trajectory_validator_param_path" value="$(var trajectory_validator_param_path)"/>
           <arg name="input_trajectories" value="/planning/generator/concatenated/candidate_trajectories"/>
-          <arg name="output_trajectories" value="/planning/trajectory_selector/safety_filter/candidate_trajectories"/>
+          <arg name="output_trajectories" value="/planning/trajectory_selector/validator/candidate_trajectories"/>
           <arg name="input_vector_map" value="/map/vector_map"/>
           <arg name="input_odometry" value="/localization/kinematic_state"/>
           <arg name="input_objects" value="/perception/object_recognition/objects"/>
           <arg name="input_acceleration" value="/localization/acceleration"/>
-        </include>
-        <include file="$(find-pkg-share autoware_trajectory_traffic_rule_filter)/launch/trajectory_traffic_rule_filter.launch.xml">
-          <arg name="filter_param_path" value="$(var filter_param_path)"/>
-          <arg name="input_trajectories" value="/planning/trajectory_selector/safety_filter/candidate_trajectories"/>
-          <arg name="output_trajectories" value="/planning/trajectory_selector/traffic_rule_filter/candidate_trajectories"/>
-          <arg name="input_map" value="/map/vector_map"/>
           <arg name="input_traffic_signals" value="/perception/traffic_light_recognition/traffic_signals"/>
         </include>
         <include file="$(find-pkg-share autoware_trajectory_ranker)/launch/simple_trajectory_ranker.launch.xml">
           <arg name="trajectory_ranker_param_path" value="$(var trajectory_ranker_param_path)"/>
-          <arg name="input_trajectories" value="/planning/trajectory_selector/traffic_rule_filter/candidate_trajectories"/>
+          <arg name="input_trajectories" value="/planning/trajectory_selector/validator/candidate_trajectories"/>
           <arg name="output_trajectories" value="/planning/trajectory_selector/ranker/scored_trajectories"/>
         </include>
         <include file="$(find-pkg-share autoware_trajectory_adapter)/launch/trajectory_adapter.launch.xml">
