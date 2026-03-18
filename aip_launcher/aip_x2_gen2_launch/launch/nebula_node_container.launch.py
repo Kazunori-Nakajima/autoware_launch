@@ -723,7 +723,7 @@ def generate_launch_description():
             )
         ),
         launch_arguments=[
-            ("use_multithread", "true"),
+            ("use_multithread", LaunchConfiguration("use_multithread")),
             ("agnocast_heaphook_path", LaunchConfiguration("agnocast_heaphook_path")),
         ],
     )
