@@ -5070,6 +5070,36 @@ Visualization Manager:
           Name: Vehicle
       Enabled: false
       Name: Debug
+    - Class: autoware_string_stamped_rviz_plugin/StringStampedOverlayDisplay
+      Enabled: true
+      Font Size: 15
+      Left: 1024
+      Max Letter Num: 100
+      Name: TrajectoryValidatorProcessingTimeReport
+      Text Color: 25; 255; 240
+      Time To Erase Last Diag: 2
+      Time To Keep Last Diag: 1
+      Top: 128
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /planning/trajectory_selector/trajectory_validator_node/debug/processing_time_text
+      Value: true
+      Value height offset: 0
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Name: TrajectoryValidatorFilteringMarkers
+      Namespaces:
+        {}
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /planning/trajectory_selector/trajectory_validator_node/debug/markers
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 15; 20; 23
