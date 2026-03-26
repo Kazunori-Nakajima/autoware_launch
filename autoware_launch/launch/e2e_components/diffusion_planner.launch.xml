@@ -36,7 +36,6 @@
   <arg name="trajectory_concatenator_param_path"/>
   <arg name="trajectory_validator_param_path"/>
   <arg name="trajectory_ranker_param_path"/>
-  <arg name="trajectory_adapter_param_path"/>
 
   <arg name="disable_diffusion_planner" default="false"/>
   <arg name="enable_minimum_rule_based_planner" default="false"/>
@@ -154,7 +153,6 @@
           <arg name="output_trajectories" value="/planning/trajectory_selector/ranker/scored_trajectories"/>
         </include>
         <include file="$(find-pkg-share autoware_trajectory_adapter)/launch/trajectory_adapter.launch.xml">
-          <arg name="trajectory_adapter_param_path" value="$(var trajectory_adapter_param_path)"/>
           <arg name="input_trajectories" value="/planning/trajectory_selector/ranker/scored_trajectories"/>
           <arg name="output_trajectory" value="/planning/trajectory"/>
         </include>
