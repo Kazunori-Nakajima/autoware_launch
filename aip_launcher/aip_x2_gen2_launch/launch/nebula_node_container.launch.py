@@ -717,7 +717,11 @@ def generate_launch_description():
     agnocast_env = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             PathJoinSubstitution(
-                [FindPackageShare("autoware_agnocast_wrapper"), "launch", "agnocast_env.launch.py"]
+                [
+                    FindPackageShare("autoware_agnocast_wrapper"),
+                    "launch",
+                    "agnocast_env.launch.py",
+                ]
             )
         ),
         launch_arguments=[
