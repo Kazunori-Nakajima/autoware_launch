@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- cspell: ignore semseg -->
+  <arg
+    name="launch_pointcloud_container"
+    default="false"
+    description="if true, launch pointcloud container. Please note that it is not intended to launch pointcloud_container_name with the same name in other launch files."
+  />
+  <arg name="pointcloud_container_name" default="pointcloud_container" description="name of pointcloud container"/>
+  <arg name="use_sim_time" default="false"/>
+  <arg name="vehicle_model" default="sample_vehicle"/>
+
+  <!-- Traffic Light -->
+  <arg name="use_traffic_light_recognition" default="true" description="use traffic light recognition module, if false, traffic light recognition module will not be launched"/>
+  <let name="default_traffic_light_recognition/camera_namespaces" value="[camera4, camera5]"/>
+  <arg name="traffic_light_recognition/fusion_only" default="true"/>
+  <arg name="traffic_light_recognition/camera_namespaces" default="$(var default_traffic_light_recognition/camera_namespaces)" description="choose camera which use for traffic light recognition"/>
+  <arg name="traffic_light_recognition/use_high_accuracy_detection" default="true" description="select whether to use high accuracy detector for traffic light recognition"/>
+  <arg
+    name="traffic_light_recognition/high_accuracy_detection_type"
+    default="fine_detection"
+    description="select high accuracy detector type for traffic light recognition: fine_detection or whole_image_detection"
+  />
+  <let name="traffic_light_occlusion/input/cloud" value="/sensing/lidar/top/pointcloud_raw_ex" unless="$(eval &quot;'aip_xx1_gen2' == '$(var sensor_model)'&quot;)"/>
+
+  <!-- LiDAR DNN parameters -->
+  <arg name="input/pointcloud" default="/sensing/lidar/concatenated/pointcloud"/>
+  <arg name="lidar_detection_model_type" default="centerpoint"/>
+  <arg name="lidar_detection_model_name" default="centerpoint"/>
+  <arg name="lidar_detection_model" default="centerpoint"/>
+  <arg name="lidar_short_range_detection_model_type" default="centerpoint_short_range"/>
+  <arg name="lidar_short_range_detection_model_name" default=""/>
+  <arg name="use_camera_vru_detector" default="false"/>
+  <arg name="tracker_publish_merged_objects" default="false"/>
+
+  <!-- Pointcloud container -->
+  <group if="$(var launch_pointcloud_container)">
+    <include file="$(find-pkg-share autoware_launch)/launch/pointcloud_container.launch.py">
+      <arg name="use_multithread" value="true"/>
+      <arg name="container_name" value="$(var pointcloud_container_name)"/>
+    </include>
+  </group>
+
+  <!-- Global parameters -->
+  <group scoped="false">
+    <include file="$(find-pkg-share autoware_global_parameter_loader)/launch/global_params.launch.py">
+      <arg name="use_sim_time" value="$(var use_sim_time)"/>
+      <arg name="vehicle_model" value="$(var vehicle_model)"/>
+    </include>
+  </group>
+
+  <!-- LiDAR DNN parameters -->
+  <group>
+    <push-ros-namespace namespace="perception"/>
+
+    <group>
+      <push-ros-namespace namespace="object_recognition"/>
+      <group>
+        <push-ros-namespace namespace="detection"/>
+        <include file="$(find-pkg-share tier4_perception_launch)/launch/object_recognition/detection/detector/lidar_dnn_detector.launch.xml">
+          <arg name="input/pointcloud" value="$(var input/pointcloud)"/>
+          <arg name="output/objects" value="/perception/object_recognition/detection/centerpoint/objects"/>
+          <arg name="node/pointcloud_container" value="$(var pointcloud_container_name)"/>
+          <arg name="lidar_detection_model_type" value="$(var lidar_detection_model_type)"/>
+          <arg name="lidar_detection_model_name" value="$(var lidar_detection_model_name)"/>
+          <arg name="lidar_short_range_detection_model_type" value="$(var lidar_short_range_detection_model_type)"/>
+          <arg name="lidar_short_range_detection_model_name" value="$(var lidar_short_range_detection_model_name)"/>
+          <arg name="output/short_range_objects" value=""/>
+          <!--unused-->
+
+          <arg name="centerpoint_model_path" value="/opt/autoware/mlmodels/$(var lidar_detection_model)"/>
+        </include>
+      </group>
+
+      <!-- Multi Object Tracking -->
+      <group>
+        <push-ros-namespace namespace="tracking"/>
+        <include file="$(find-pkg-share tier4_perception_launch)/launch/object_recognition/tracking/tracking.launch.xml">
+          <arg name="mode" value="lidar"/>
+          <arg name="lidar_detection_model_type" value="$(var lidar_detection_model_type)"/>
+          <arg name="object_recognition_tracking_radar_tracked_object_sorter_param_path" value=""/>
+          <arg name="object_recognition_tracking_radar_tracked_object_lanelet_filter_param_path" value=""/>
+          <arg name="object_recognition_tracking_object_merger_data_association_matrix_param_path" value=""/>
+          <arg name="object_recognition_tracking_object_merger_node_param_path" value=""/>
+
+          <arg
+            name="object_recognition_tracking_multi_object_tracker_data_association_matrix_param_path"
+            value="$(find-pkg-share autoware_launch)/config/perception/object_recognition/tracking/multi_object_tracker/data_association_matrix.param.yaml"
+          />
+
+          <arg
+            name="object_recognition_tracking_multi_object_tracker_input_channels_param_path"
+            value="$(find-pkg-share autoware_launch)/config/perception/object_recognition/tracking/multi_object_tracker/input_channels.param.yaml"
+          />
+
+          <arg
+            name="object_recognition_tracking_multi_object_tracker_node_param_path"
+            value="$(find-pkg-share autoware_launch)/config/perception/object_recognition/tracking/multi_object_tracker/multi_object_tracker_node.param.yaml"
+          />
+          <arg name="use_multi_channel_tracker_merger" value="true"/>
+          <arg name="use_radar_tracking_fusion" value="false"/>
+          <arg name="use_detection_by_tracker" value="false"/>
+          <arg name="use_validator" value="false"/>
+          <arg name="use_short_range_detection" value="false"/>
+          <arg name="publish_merged_objects" value="$(var tracker_publish_merged_objects)"/>
+          <arg name="use_camera_vru_detector" value="$(var use_camera_vru_detector)"/>
+        </include>
+      </group>
+
+      <!-- Remap Predictions from Diffusion Planner to Predictions-->
+      <group>
+        <push-ros-namespace namespace="prediction"/>
+        <node
+          pkg="topic_tools"
+          exec="relay"
+          name="prediction_remapper"
+          args="/planning/trajectory_generator/neural_network_based_planner/diffusion_planner_node/output/predicted_objects /perception/object_recognition/objects"
+        />
+      </group>
+
+      <!-- Traffic light module -->
+      <group if="$(var use_traffic_light_recognition)">
+        <push-ros-namespace namespace="traffic_light_recognition"/>
+        <include file="$(find-pkg-share tier4_perception_launch)/launch/traffic_light_recognition/traffic_light.launch.xml">
+          <arg name="fusion_only" value="$(var traffic_light_recognition/fusion_only)"/>
+          <arg name="camera_namespaces" value="$(var traffic_light_recognition/camera_namespaces)"/>
+
+          <arg name="use_traffic_light_recognition" value="$(var use_traffic_light_recognition)"/>
+
+          <arg name="use_high_accuracy_detection" value="$(var traffic_light_recognition/use_high_accuracy_detection)"/>
+          <arg name="high_accuracy_detection_type" value="$(var traffic_light_recognition/high_accuracy_detection_type)"/>
+
+          <!-- traffic light recognition parameters -->
+          <arg
+            name="each_traffic_light_map_based_detector_param_path"
+            value="$(find-pkg-share autoware_launch)/config/perception/traffic_light_recognition/traffic_light_map_based_detector/TRAFFIC_LIGHT_RECOGNITION_CAMERA_NAMESPACE_traffic_light_map_based_detector.param.yaml"
+          />
+          <arg
+            name="traffic_light_fine_detector_param_path"
+            value="$(find-pkg-share autoware_launch)/config/perception/traffic_light_recognition/traffic_light_fine_detector/traffic_light_fine_detector.param.yaml"
+          />
+          <arg
+            name="yolox_traffic_light_detector_param_path"
+            value="$(find-pkg-share autoware_launch)/config/perception/traffic_light_recognition/tensorrt_yolox/yolox_traffic_light_detector.param.yaml"
+          />
+          <arg
+            name="car_traffic_light_classifier_param_path"
+            value="$(find-pkg-share autoware_launch)/config/perception/traffic_light_recognition/traffic_light_classifier/car_traffic_light_classifier.param.yaml"
+          />
+          <arg
+            name="pedestrian_traffic_light_classifier_param_path"
+            value="$(find-pkg-share autoware_launch)/config/perception/traffic_light_recognition/traffic_light_classifier/pedestrian_traffic_light_classifier.param.yaml"
+          />
+          <arg
+            name="traffic_light_roi_visualizer_param_path"
+            value="$(find-pkg-share autoware_launch)/config/perception/traffic_light_recognition/traffic_light_visualization/traffic_light_roi_visualizer.param.yaml"
+          />
+          <arg
+            name="traffic_light_occlusion_predictor_param_path"
+            value="$(find-pkg-share autoware_launch)/config/perception/traffic_light_recognition/traffic_light_occlusion_predictor/traffic_light_occlusion_predictor.param.yaml"
+          />
+          <arg
+            name="traffic_light_multi_camera_fusion_param_path"
+            value="$(find-pkg-share autoware_launch)/config/perception/traffic_light_recognition/traffic_light_multi_camera_fusion/traffic_light_multi_camera_fusion.param.yaml"
+          />
+          <arg name="traffic_light_arbiter_param_path" value="$(find-pkg-share autoware_launch)/config/perception/traffic_light_recognition/traffic_light_arbiter/traffic_light_arbiter.param.yaml"/>
+          <arg
+            name="crosswalk_traffic_light_estimator_param_path"
+            value="$(find-pkg-share autoware_launch)/config/perception/traffic_light_recognition/crosswalk_traffic_light_estimator/crosswalk_traffic_light_estimator.param.yaml"
+          />
+          <arg name="whole_image_detection/model_path" value="$(var data_path)/tensorrt_yolox/yolox_s_car_ped_tl_detector_960_960_batch_1.onnx"/>
+          <arg name="whole_image_detection/label_path" value="$(var data_path)/tensorrt_yolox/car_ped_tl_detector_labels.txt"/>
+          <arg name="fine_detection/model_path" value="$(var data_path)/traffic_light_fine_detector/tlr_car_ped_yolox_s_batch_6.onnx"/>
+          <arg name="fine_detection/label_path" value="$(var data_path)/traffic_light_fine_detector/tlr_labels.txt"/>
+          <arg name="classification/car/model_path" value="$(var data_path)/traffic_light_classifier/traffic_light_classifier_mobilenetv2_batch_6.onnx"/>
+          <arg name="classification/car/label_path" value="$(var data_path)/traffic_light_classifier/lamp_labels.txt"/>
+          <arg name="classification/pedestrian/model_path" value="$(var data_path)/traffic_light_classifier/ped_traffic_light_classifier_mobilenetv2_batch_6.onnx"/>
+          <arg name="classification/pedestrian/label_path" value="$(var data_path)/traffic_light_classifier/lamp_labels_ped.txt"/>
+        </include>
+      </group>
+    </group>
+  </group>
+</launch>

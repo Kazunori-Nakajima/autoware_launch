@@ -20,6 +20,7 @@
   <arg name="launch_sensing" default="true" description="launch sensing"/>
   <arg name="launch_sensing_driver" default="true" description="launch sensing driver"/>
   <arg name="launch_localization" default="true" description="launch localization"/>
+  <arg name="launch_simple_perception" default="false" description="launch simple perception"/>
   <arg name="launch_perception" default="true" description="launch perception"/>
   <arg name="launch_planning" default="true" description="launch planning"/>
   <arg name="launch_control" default="true" description="launch control"/>
@@ -136,9 +137,16 @@
 
   <!-- Perception -->
   <group if="$(var launch_perception)">
-    <include file="$(find-pkg-share autoware_launch)/launch/components/tier4_perception_component.launch.xml">
-      <arg name="data_path" value="$(var data_path)"/>
-    </include>
+    <group if="$(var launch_simple_perception)">
+      <include file="$(find-pkg-share autoware_launch)/launch/e2e_components/simple_perception.launch.xml">
+        <arg name="data_path" value="$(var data_path)"/>
+      </include>
+    </group>
+    <group unless="$(var launch_simple_perception)">
+      <include file="$(find-pkg-share autoware_launch)/launch/components/tier4_perception_component.launch.xml">
+        <arg name="data_path" value="$(var data_path)"/>
+      </include>
+    </group>
   </group>
 
   <!-- Planning -->
