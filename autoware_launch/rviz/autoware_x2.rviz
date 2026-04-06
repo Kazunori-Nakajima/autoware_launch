@@ -2866,6 +2866,18 @@ Visualization Manager:
                 Reliability Policy: Reliable
                 Value: /planning/trajectory_generator/neural_network_based_planner/diffusion_planner_node/debug/route_marker
               Value: true
+            - Class: rviz_default_plugins/MarkerArray
+              Enabled: false
+              Name: ModifierObstacleStopMarker
+              Namespaces:
+                {}
+              Topic:
+                Depth: 5
+                Durability Policy: Volatile
+                History Policy: Keep Last
+                Reliability Policy: Reliable
+                Value: /planning/trajectory_generator/neural_network_based_planner/trajectory_modifier/obstacle_stop/debug/marker
+              Value: true
             - Class: tier4_planning_factor_rviz_plugin/PlanningFactorRvizPlugin
               Enabled: true
               Name: PlanningFactor(DiffusionPlanner)
@@ -2942,6 +2954,20 @@ Visualization Manager:
                 Color: 255; 255; 255
               Value: true
               Visualization Type: Normal
+            - Class: tier4_planning_factor_rviz_plugin/PlanningFactorRvizPlugin
+              Enabled: true
+              Name: PlanningFactor(ModifierObstacleStop)
+              Namespaces:
+                {}
+              Show Safety Factors: true
+              Topic:
+                Depth: 5
+                Durability Policy: Volatile
+                History Policy: Keep Last
+                Reliability Policy: Reliable
+                Value: /planning/planning_factors/modifier_obstacle_stop
+              Value: true
+              show_safety_factors: true
           Enabled: true
           Name: NeuralNetworkBasedPlanner
         - Class: rviz_common/Group
@@ -3342,6 +3368,14 @@ Visualization Manager:
                     GoalPose: true
                     MissionDetailsDisplay: true
                     RouteArea: true
+                    Value: true
+                  NeuralNetworkBasedPlanner:
+                    DiffusionPlannerRouteMarker: true
+                    ModifierObstacleStopMarker: true
+                    PlanningFactor(Adapter): true
+                    PlanningFactor(ModifierObstacleStop): true
+                    PlanningFactor(NeuralNetworkPlanner): true
+                    PredictedObjects: true
                     Value: true
                   ScenarioPlanning:
                     LaneDriving:

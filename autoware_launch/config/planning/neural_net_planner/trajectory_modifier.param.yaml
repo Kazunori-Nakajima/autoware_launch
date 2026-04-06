@@ -27,7 +27,7 @@
       arrived_distance_threshold: 0.5 # threshold to check if the ego vehicle has arrived at the stop point [m]
 
       obstacle_tracking:
-        on_time_buffer: 0.5
+        on_time_buffer: 0.8
         off_time_buffer: 1.0
         object_distance_th: 1.0 # [m]
         object_yaw_th: 0.1745 # [rad] (10 degrees)
@@ -36,7 +36,7 @@
 
       objects:
         object_types: ["car", "truck", "bus", "trailer", "motorcycle", "bicycle", "pedestrian"] # object types to consider for obstacle stop
-        max_velocity_th: 1.0      # maximum velocity threshold for target object [m/s]
+        max_velocity_th: 0.5      # maximum velocity threshold for target object [m/s]
 
       pointcloud:
         height_buffer: 0.5  # height buffer to add above ego height [m]
