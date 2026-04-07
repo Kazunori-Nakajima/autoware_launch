@@ -50,14 +50,17 @@
   <exec_depend>j6_gen2_launch</exec_depend>
   <exec_depend>j6_interface</exec_depend>
   <exec_depend>jerk_constant_deceleration_controller</exec_depend>
+  <exec_depend>jq</exec_depend>
   <exec_depend>l4_toolkit_launch</exec_depend>
   <exec_depend>max_speed_selector</exec_depend>
   <exec_depend>mrm_diagnostic_overrider</exec_depend>
+  <exec_depend>nlohmann-json-dev</exec_depend>
   <exec_depend>output_master_manager</exec_depend>
   <exec_depend>python3-bson</exec_depend>
   <exec_depend>python3-tornado</exec_depend>
   <exec_depend>redundancy_switcher_interface</exec_depend>
   <exec_depend>rviz2</exec_depend>
+  <exec_depend>socat</exec_depend>
   <exec_depend>tier4_autoware_api_extension_launch</exec_depend>
   <exec_depend>tier4_autoware_api_launch</exec_depend>
   <exec_depend>tier4_control_launch</exec_depend>
