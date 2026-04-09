@@ -31,6 +31,7 @@
       rss:
         ego_deceleration_threshold: 4.0
         ego_reaction_time: 0.4
+        stop_margin: 2.0
         object_acceleration: -1.0
 
 
