@@ -61,7 +61,6 @@
 
     # NOTE: pseudo_emergency_stop emulates the MRM stop behaviors. This is for evaluation only.
     pseudo_emergency_stop:
-      enable: false  # when true, the emergency-stop fallback is active; when false, all emergency-stop handling is skipped
       deceleration_mps2: -6.0  # [m/s^2] target longitudinal deceleration (negative)
       jerk_mps3: -20.0  # [m/s^3] longitudinal jerk to ramp the deceleration (negative)
       recovery_policy: "until_stopped"  # "until_stopped": keep decelerating until ego is stopped, "immediate": release as soon as the trigger disappears
