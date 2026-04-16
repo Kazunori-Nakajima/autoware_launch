@@ -59,6 +59,8 @@
       max_jerk_mps3: -5.0
       brake_delay_s: 1.0
       cutoff_time_s: 2.0
+      on_time_buffer_s: 0.20
+      off_time_buffer_s: 0.10
 
     # NOTE: pseudo_emergency_stop emulates the MRM stop behaviors. This is for evaluation only.
     pseudo_emergency_stop:
