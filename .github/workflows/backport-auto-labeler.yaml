@@ -1,0 +1,86 @@
+name: Backport Auto-labeler
+on:
+  pull_request:
+    branches:
+      - tier4/main
+      - beta/v4.4
+    types:
+      - opened
+      - reopened
+
+jobs:
+  backport-auto-labeler:
+    runs-on: ubuntu-latest
+    if: github.repository == 'tier4/autoware_launch.x2'
+    name: Backport Auto-labeler (${{ matrix.branch }})
+    strategy:
+      matrix:
+        branch:
+          - tier4/main
+          - beta/v4.4
+    steps:
+      - name: Skip if base branch
+        if: github.event.pull_request.base.ref == matrix.branch
+        run: |
+          echo "Skipping: PR base is '${{ matrix.branch }}'"
+          exit 0
+
+      - name: Generate token
+        if: github.event.pull_request.base.ref != matrix.branch && !contains(github.event.pull_request.title, '(backport ')
+        id: generate-token
+        uses: tibdex/github-app-token@v2
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
+
+      - name: Create and add backport label
+        if: github.event.pull_request.base.ref != matrix.branch && !contains(github.event.pull_request.title, '(backport ')
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ steps.generate-token.outputs.token }}
+          script: |
+            const branch = '${{ matrix.branch }}';
+            const labelName = `backport ${branch}`;
+
+            // Ensure label exists
+            try {
+              await github.rest.issues.getLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: labelName
+              });
+              console.log(`Label '${labelName}' already exists`);
+            } catch (error) {
+              if (error.status === 404) {
+                try {
+                  await github.rest.issues.createLabel({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    name: labelName,
+                    color: '0E8A16',
+                    description: `Backport this PR to ${branch}`
+                  });
+                  console.log(`Label '${labelName}' created`);
+                } catch (createError) {
+                  if (createError.status === 422) {
+                    console.log(`Label '${labelName}' was created concurrently; continuing`);
+                  } else {
+                    throw createError;
+                  }
+                }
+              } else {
+                throw error;
+              }
+            }
+
+            console.log('Waiting for 10 seconds...');
+            await new Promise(resolve => setTimeout(resolve, 10000));
+            console.log('Wait completed');
+
+            await github.rest.issues.addLabels({
+              issue_number: context.payload.pull_request.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: [labelName]
+            });
+            console.log(`Label '${labelName}' added to PR`);
