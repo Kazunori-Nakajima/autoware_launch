@@ -146,6 +146,7 @@
           <arg name="input_objects" value="/perception/object_recognition/objects"/>
           <arg name="input_acceleration" value="/localization/acceleration"/>
           <arg name="input_traffic_signals" value="/perception/traffic_light_recognition/traffic_signals"/>
+          <arg name="input_route" value="/planning/mission_planning/route"/>
         </include>
         <include file="$(find-pkg-share autoware_trajectory_ranker)/launch/simple_trajectory_ranker.launch.xml">
           <arg name="trajectory_ranker_param_path" value="$(var trajectory_ranker_param_path)"/>
