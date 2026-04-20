@@ -24,11 +24,17 @@
       min_value: 2.0
 
     collision_check:
+      global_setting:
+        time_resolution: 0.1
+      drac:
+        enable_assessment: false
       pet_collision:
+        enable_assessment: true
         ego_braking_delay: 0.4
         ego_assumed_acceleration: -4.0
         collision_time_threshold: 1.0
       rss:
+        enable_assessment: true
         ego_deceleration_threshold: 4.0
         ego_reaction_time: 0.4
         stop_margin: 2.0
