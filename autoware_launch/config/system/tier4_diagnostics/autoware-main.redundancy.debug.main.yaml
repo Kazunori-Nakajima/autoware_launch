@@ -19,7 +19,7 @@ units:
     list:
       - { type: link, link: /debug/injection/autonomous_available }
       - { type: link, link: /redundancy/redundancy_switcher }
-      - { type: link, link: /adapi/mrm_request/delegate }
+      - { type: link, link: /system/020-mrm-request }
       - { type: link, link: /vehicle/override_when_level4_driving }
 
   - path: /autoware/modes/comfortable_stop
@@ -27,7 +27,6 @@ units:
     list:
       - { type: link, link: /debug/injection/comfortable_stop_available }
       - { type: link, link: /redundancy/redundancy_switcher }
-      - { type: link, link: /adapi/mrm_request/delegate }
       - { type: link, link: /vehicle/override_when_level4_driving }
 
   - path: /autoware/modes/in_lane_moderate_stop
@@ -62,49 +61,49 @@ units:
     node: ""
     name: injection_local_available
     timeout: 1.0
-    # latch: 0.0
+    latch: 0.0
 
   - path: /debug/injection/remote_available
     type: diag
     node: ""
     name: injection_remote_available
     timeout: 1.0
-    # latch: 0.0
+    latch: 0.0
 
   - path: /debug/injection/stop_available
     type: diag
     node: ""
     name: injection_stop_available
     timeout: 1.0
-    # latch: 0.0
+    latch: 0.0
 
   - path: /debug/injection/autonomous_available
     type: diag
     node: ""
     name: injection_autonomous_available
     timeout: 1.0
-    # latch: 0.0
+    latch: 0.0
 
   - path: /debug/injection/comfortable_stop_available
     type: diag
     node: ""
     name: injection_comfortable_stop_available
     timeout: 1.0
-    # latch: 0.0
+    latch: 0.0
 
   - path: /debug/injection/main_ecu_in_lane_moderate_stop_available
     type: diag
     node: ""
     name: injection_main_ecu_in_lane_moderate_stop_available
     timeout: 1.0
-    # latch: 0.0
+    latch: 0.0
 
   - path: /debug/injection/main_ecu_in_lane_emergency_stop_available
     type: diag
     node: ""
     name: injection_main_ecu_in_lane_emergency_stop_available
     timeout: 1.0
-    # latch: 0.0
+    latch: 0.0
 
   - path: /redundancy/redundancy_switcher
     type: diag
@@ -172,7 +171,7 @@ units:
     name: main_vcu_to_sub_vcu_link_fault
     timeout: 3.0
 
-  - path: /adapi/mrm_request/delegate
+  - path: /system/020-mrm-request
     type: diag
     node: /adapi/node/mrm_request
     name: delegate

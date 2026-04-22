@@ -6,8 +6,9 @@ units:
     type: and
     list:
       - { type: link, link: /debug/injection/sub_ecu_in_lane_moderate_stop_available }
+      - { type: link, link: /sub_ecu/redundancy/redundancy_switcher_status }
 
-  - path: /notification/sub/faults
+  - path: /sub_ecu/redundancy/notification
     type: and
     list:
       - { type: link, link: /sub_ecu/redundancy/main_ecu_fault }
@@ -29,11 +30,12 @@ units:
     timeout: 1.0
     # latch: 0.0
 
-  - path: /redundancy/redundancy_switcher
+  - path: /sub_ecu/redundancy/redundancy_switcher_status
     type: diag
     node: sub_ecu_redundancy_switcher_interface
     name: redundancy_switcher_status
     timeout: 3.0
+    latch: 0.0
 
   - path: /sub_ecu/redundancy/main_ecu_fault
     type: diag
