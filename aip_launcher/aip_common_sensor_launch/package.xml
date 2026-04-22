@@ -8,7 +8,7 @@
   <maintainer email="david.wong@tier4.jp">David Wong</maintainer>
   <maintainer email="kenzo.lobos@tier4.jp">Kenzo Lobos-Tsunekawa</maintainer>
   <maintainer email="max.schmeller@tier4.jp">Max Schmeller</maintainer>
-  <license>Apache License 2.0</license>
+  <license>TIER IV Proprietary License</license>
 
   <buildtool_depend>ament_cmake_auto</buildtool_depend>
 

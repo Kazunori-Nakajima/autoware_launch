@@ -8,7 +8,7 @@
   <maintainer email="anh.nguyen.2@tier4.jp">NGUYEN Viet Anh</maintainer>
   <maintainer email="taiki.yamada@tier4.jp">Taiki Yamada</maintainer>
   <maintainer email="masahiro.sakamoto@tier4.jp">Masahiro Sakamoto</maintainer>
-  <license>Apache License 2.0</license>
+  <license>TIER IV Proprietary License</license>
   <author email="yamato.ando@tier4.jp">Yamato Ando</author>
 
   <buildtool_depend>ament_cmake_auto</buildtool_depend>

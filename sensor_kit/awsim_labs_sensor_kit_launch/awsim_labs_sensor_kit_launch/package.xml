@@ -5,7 +5,7 @@
   <version>0.50.0</version>
   <description>The awsim_labs_sensor_kit_launch package</description>
   <maintainer email="piotr.jaroszek@robotec.ai">Piotr Jaroszek</maintainer>
-  <license>Apache License 2.0</license>
+  <license>TIER IV Proprietary License</license>
 
   <buildtool_depend>ament_cmake_auto</buildtool_depend>
 

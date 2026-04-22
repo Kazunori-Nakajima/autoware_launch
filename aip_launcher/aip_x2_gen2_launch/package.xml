@@ -6,7 +6,7 @@
   <description>The aip_x2_gen2_launch package</description>
 
   <maintainer email="tomohito.ando@tier4.jp">Tomohito Ando</maintainer>
-  <license>Apache License 2.0</license>
+  <license>TIER IV Proprietary License</license>
 
   <buildtool_depend>ament_cmake_auto</buildtool_depend>
 

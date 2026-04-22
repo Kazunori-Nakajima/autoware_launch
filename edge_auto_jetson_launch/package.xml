@@ -6,7 +6,7 @@
   <description>The package for meta-package for edge-auto-jetson launchers</description>
 
   <maintainer email="aohsato@gmail.com">Akihito OHSATO</maintainer>
-  <license>Apache License 2.0</license>
+  <license>TIER IV Proprietary License</license>
 
   <buildtool_depend>ament_cmake_auto</buildtool_depend>
 
