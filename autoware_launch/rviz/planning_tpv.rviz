@@ -4337,6 +4337,18 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /planning/trajectory_selector/trajectory_validator_node/debug/collision_check_filter
       Value: true
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Name: TrajectoryValidator(UncrossableBoundaryDepartureFilter)
+      Namespaces:
+        {}
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /planning/trajectory_selector/trajectory_validator_node/debug/uncrossable_boundary_departure_filter
+      Value: true
     - Class: rviz_default_plugins/Image
       Enabled: true
       Max Value: 1
