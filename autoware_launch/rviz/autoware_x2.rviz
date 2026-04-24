@@ -5135,7 +5135,7 @@ Visualization Manager:
         Value: /planning/trajectory_selector/trajectory_validator_node/debug/markers
       Value: true
     - Class: rviz_default_plugins/MarkerArray
-      Enabled: true
+      Enabled: false
       Name: TrajectoryValidator(CollisionCheckFilter)
       Namespaces:
         {}
