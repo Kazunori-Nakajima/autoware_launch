@@ -156,6 +156,7 @@
       <arg name="vehicle_model" value="$(var vehicle_model)"/>
       <arg name="planning_input_objects_topic_name" value="$(var planning_input_objects_topic_name)"/>
       <arg name="planning_input_pointcloud_topic_name" value="$(var planning_input_pointcloud_topic_name)"/>
+      <arg name="planning_setting" value="$(var planning_setting)"/>
     </include>
 
     <!-- Relay node for trajectory topic -->
