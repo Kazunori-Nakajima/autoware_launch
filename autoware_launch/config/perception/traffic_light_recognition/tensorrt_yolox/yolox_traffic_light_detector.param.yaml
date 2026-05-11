@@ -1,8 +1,8 @@
 # cspell: ignore semseg
 /**:
   ros__parameters:
-    model_path: "/opt/autoware/mlmodels/traffic_light_detector/yolox_s_car_ped_tl_detector_960_960_batch_1.onnx"
-    label_path: "/opt/autoware/mlmodels/traffic_light_detector/car_ped_tl_detector_labels.txt"
+    model_path: $(var data_path)/traffic_light_detector/yolox_s_car_ped_tl_detector_960_960_batch_1.onnx
+    label_path: $(var data_path)/traffic_light_detector/car_ped_tl_detector_labels.txt
     color_map_path: "" # not used
 
     score_threshold: 0.35

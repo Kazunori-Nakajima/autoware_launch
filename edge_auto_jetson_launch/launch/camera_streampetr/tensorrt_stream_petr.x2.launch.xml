@@ -1,11 +1,11 @@
 <launch>
   <arg name="build_only" default="false" description="shutdown node after TensorRT engine file is built"/>
   <arg name="debug_mode" default="true" description="debug mode"/>
-  <arg name="model_path" default="/opt/autoware/mlmodels/streampetr"/>
-  <arg name="param_path" default="$(var model_path)/tensorrt_stream_petr.param.yaml"/>
+  <arg name="data_path" default="/opt/autoware/mlmodels" description="path to the directory containing the model files"/>
+  <arg name="model_path" default="$(var data_path)/streampetr"/>
 
   <node pkg="autoware_camera_streampetr" exec="autoware_camera_streampetr_node" name="stream_petr" namespace="/perception/object_recognition/detection" output="screen">
-    <param from="$(var param_path)" allow_substs="true"/>
+    <param from="$(var model_path)/tensorrt_stream_petr.param.yaml" allow_substs="true"/>
     <param name="build_only" value="$(var build_only)"/>
     <param name="debug_mode" value="$(var debug_mode)"/>
     <param name="model_params.backbone_path" value="$(var model_path)/simplify_extract_img_feat.onnx"/>
